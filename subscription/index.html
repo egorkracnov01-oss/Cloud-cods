@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Подписка — Дикоросы</title>
+  <meta name="description" content="Подписка на ежемесячный подарочный набор дикоросов: лёгкая, средняя и высокая. Каждый месяц — коробка с продукцией бесплатно.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/subscription.css">
+</head>
+<body>
+
+  <!-- Шапка сайта. На реальном сайте замените на общую шапку и добавьте пункт меню «Подписка». -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/">Дикоросы</a>
+      <nav class="main-nav" aria-label="Основное меню">
+        <a href="/">Главная</a>
+        <a href="/catalog/">Каталог</a>
+        <a href="/subscription/" class="active" aria-current="page">Подписка</a>
+        <a href="/about/">О нас</a>
+        <a href="/contacts/">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <p class="eyebrow">Подписка на дары леса</p>
+        <h1>Каждый месяц — подарок от тайги к вашей двери</h1>
+        <p class="lead">Оформите подписку один раз, и каждый месяц мы бесплатно привезём вам набор нашей продукции: ягоды, травяные чаи, варенье, мёд, орехи и другие дикоросы. Состав коробки меняется по сезону.</p>
+        <a href="#tiers" class="btn btn-primary">Выбрать подписку</a>
+      </div>
+    </section>
+
+    <section class="how" aria-labelledby="how-title">
+      <div class="container">
+        <h2 id="how-title">Как это работает</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-num">1</span>
+            <h3>Выберите уровень</h3>
+            <p>Лёгкая, средняя или высокая — они отличаются объёмом и составом набора.</p>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <h3>Оформите заявку</h3>
+            <p>Укажите контакты и адрес доставки. Менеджер свяжется с вами для подтверждения.</p>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <h3>Получайте подарки</h3>
+            <p>Каждый месяц набор приезжает к вам. Доставка и сама продукция входят в подписку.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="tiers" class="tiers" aria-labelledby="tiers-title">
+      <div class="container">
+        <h2 id="tiers-title">Уровни подписки</h2>
+
+        <div class="period-switch" role="radiogroup" aria-label="Срок подписки">
+          <button type="button" role="radio" aria-checked="true" data-months="1">1 месяц</button>
+          <button type="button" role="radio" aria-checked="false" data-months="3">3 месяца <span class="badge">−5%</span></button>
+          <button type="button" role="radio" aria-checked="false" data-months="6">6 месяцев <span class="badge">−10%</span></button>
+          <button type="button" role="radio" aria-checked="false" data-months="12">12 месяцев <span class="badge">−15%</span></button>
+        </div>
+
+        <div class="tier-grid">
+          <article class="tier" data-tier="light">
+            <h3>Лёгкая</h3>
+            <p class="tier-sub">Чтобы попробовать</p>
+            <p class="price"><span class="price-value" data-base="990">990</span> ₽<span class="per">/мес</span></p>
+            <p class="price-total" aria-live="polite"></p>
+            <ul class="features">
+              <li>3–4 продукта в наборе</li>
+              <li>Травяной чай или сбор</li>
+              <li>Баночка варенья или джема</li>
+              <li>Сезонный сюрприз</li>
+              <li>Бесплатная доставка</li>
+            </ul>
+            <button type="button" class="btn btn-outline" data-subscribe="light">Оформить</button>
+          </article>
+
+          <article class="tier tier-featured" data-tier="medium">
+            <span class="ribbon">Популярная</span>
+            <h3>Средняя</h3>
+            <p class="tier-sub">Для всей семьи</p>
+            <p class="price"><span class="price-value" data-base="1990">1 990</span> ₽<span class="per">/мес</span></p>
+            <p class="price-total" aria-live="polite"></p>
+            <ul class="features">
+              <li>6–7 продуктов в наборе</li>
+              <li>Всё из «Лёгкой»</li>
+              <li>Мёд и кедровые орехи</li>
+              <li>Сушёные ягоды или грибы</li>
+              <li>Открытка с рецептами</li>
+              <li>Бесплатная доставка</li>
+            </ul>
+            <button type="button" class="btn btn-primary" data-subscribe="medium">Оформить</button>
+          </article>
+
+          <article class="tier" data-tier="high">
+            <h3>Высокая</h3>
+            <p class="tier-sub">Максимум даров леса</p>
+            <p class="price"><span class="price-value" data-base="3490">3 490</span> ₽<span class="per">/мес</span></p>
+            <p class="price-total" aria-live="polite"></p>
+            <ul class="features">
+              <li>10+ продуктов в наборе</li>
+              <li>Всё из «Средней»</li>
+              <li>Новинки раньше всех</li>
+              <li>Подарочная упаковка</li>
+              <li>Скидка 10% на покупки в магазине</li>
+              <li>Личный менеджер</li>
+              <li>Бесплатная доставка</li>
+            </ul>
+            <button type="button" class="btn btn-outline" data-subscribe="high">Оформить</button>
+          </article>
+        </div>
+        <p class="note">Подписку можно приостановить или отменить в любой момент, связавшись с нами.</p>
+      </div>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 id="faq-title">Частые вопросы</h2>
+        <details>
+          <summary>Когда приходит подарок?</summary>
+          <p>Первый набор отправляем в течение 5 рабочих дней после оплаты, следующие — в тот же день каждого месяца.</p>
+        </details>
+        <details>
+          <summary>Что именно будет в коробке?</summary>
+          <p>Состав меняется каждый месяц в зависимости от сезона сбора. Мы стараемся не повторять продукты два месяца подряд.</p>
+        </details>
+        <details>
+          <summary>Можно ли сменить уровень подписки?</summary>
+          <p>Да, напишите или позвоните нам — новый уровень начнёт действовать со следующего месяца.</p>
+        </details>
+        <details>
+          <summary>Можно ли подарить подписку?</summary>
+          <p>Конечно. При оформлении укажите адрес получателя — набор будет приходить ему.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© Дикоросы</div>
+  </footer>
+
+  <!-- Форма оформления подписки -->
+  <dialog id="subscribe-dialog" class="dialog" aria-labelledby="dialog-title">
+    <form id="subscribe-form" class="dialog-form" novalidate>
+      <button type="button" class="dialog-close" aria-label="Закрыть" data-close>&times;</button>
+      <h2 id="dialog-title">Оформление подписки</h2>
+      <p class="dialog-summary" id="dialog-summary"></p>
+
+      <label>Уровень подписки
+        <select name="tier" required>
+          <option value="light">Лёгкая</option>
+          <option value="medium">Средняя</option>
+          <option value="high">Высокая</option>
+        </select>
+      </label>
+      <label>Срок
+        <select name="months" required>
+          <option value="1">1 месяц</option>
+          <option value="3">3 месяца</option>
+          <option value="6">6 месяцев</option>
+          <option value="12">12 месяцев</option>
+        </select>
+      </label>
+      <label>Имя
+        <input name="name" type="text" autocomplete="name" required>
+      </label>
+      <label>Телефон
+        <input name="phone" type="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
+      </label>
+      <label>Email
+        <input name="email" type="email" autocomplete="email">
+      </label>
+      <label>Адрес доставки
+        <textarea name="address" rows="2" autocomplete="street-address" required></textarea>
+      </label>
+      <label class="checkbox">
+        <input name="agree" type="checkbox" required>
+        <span>Согласен на обработку персональных данных</span>
+      </label>
+      <p class="form-error" role="alert" hidden></p>
+      <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+    </form>
+    <div class="dialog-success" hidden>
+      <h2>Спасибо!</h2>
+      <p>Заявка принята. Мы свяжемся с вами в ближайшее время, чтобы подтвердить подписку и оплату.</p>
+      <button type="button" class="btn btn-primary" data-close>Хорошо</button>
+    </div>
+  </dialog>
+
+  <script src="js/subscription.js"></script>
+</body>
+</html>
