@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Подписка — Дикоросы</title>
+  <title>Подписка — Дикоросы большой страны</title>
   <meta name="description" content="Подписка на ежемесячный подарочный набор дикоросов: лёгкая, средняя и высокая. Каждый месяц — коробка с продукцией бесплатно.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Oswald:wght@600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/subscription.css">
 </head>
 <body>
@@ -15,13 +15,15 @@
   <!-- Шапка сайта. На реальном сайте замените на общую шапку и добавьте пункт меню «Подписка». -->
   <header class="site-header">
     <div class="container header-inner">
-      <a class="logo" href="/">Дикоросы</a>
+      <a class="logo" href="/" aria-label="Дикоросы большой страны — на главную">
+        <span class="logo-main">Дикоросы</span>
+        <span class="logo-sub">большой страны</span>
+      </a>
       <nav class="main-nav" aria-label="Основное меню">
-        <a href="/">Главная</a>
-        <a href="/catalog/">Каталог</a>
+        <a href="/#about">О проекте</a>
+        <a href="/#catalog">Каталог</a>
         <a href="/subscription/" class="active" aria-current="page">Подписка</a>
-        <a href="/about/">О нас</a>
-        <a href="/contacts/">Контакты</a>
+        <a href="/#contacts">Контакты</a>
       </nav>
     </div>
   </header>
@@ -30,8 +32,8 @@
     <section class="hero">
       <div class="container hero-inner">
         <p class="eyebrow">Подписка на дары леса</p>
-        <h1>Каждый месяц — подарок от тайги к вашей двери</h1>
-        <p class="lead">Оформите подписку один раз, и каждый месяц мы бесплатно привезём вам набор нашей продукции: ягоды, травяные чаи, варенье, мёд, орехи и другие дикоросы. Состав коробки меняется по сезону.</p>
+        <h1>Россия на вкус — каждый месяц</h1>
+        <p class="lead">Оформите подписку один раз, и каждый месяц мы бесплатно привезём вам набор нашей продукции: сублимированные ягоды, шоколад, чай, сладкое и солёное из дикоросов, собранных в лесах нашей страны. Состав набора меняется каждый месяц.</p>
         <a href="#tiers" class="btn btn-primary">Выбрать подписку</a>
       </div>
     </section>
@@ -77,10 +79,10 @@
             <p class="price"><span class="price-value" data-base="990">990</span> ₽<span class="per">/мес</span></p>
             <p class="price-total" aria-live="polite"></p>
             <ul class="features">
-              <li>3–4 продукта в наборе</li>
-              <li>Травяной чай или сбор</li>
-              <li>Баночка варенья или джема</li>
-              <li>Сезонный сюрприз</li>
+              <li>3 продукта в наборе</li>
+              <li>Плитка шоколада</li>
+              <li>Чай</li>
+              <li>Баночка сублимированных ягод</li>
               <li>Бесплатная доставка</li>
             </ul>
             <button type="button" class="btn btn-outline" data-subscribe="light">Оформить</button>
@@ -93,11 +95,11 @@
             <p class="price"><span class="price-value" data-base="1990">1 990</span> ₽<span class="per">/мес</span></p>
             <p class="price-total" aria-live="polite"></p>
             <ul class="features">
-              <li>6–7 продуктов в наборе</li>
+              <li>5–6 продуктов в наборе</li>
               <li>Всё из «Лёгкой»</li>
-              <li>Мёд и кедровые орехи</li>
-              <li>Сушёные ягоды или грибы</li>
-              <li>Открытка с рецептами</li>
+              <li>Сладкое: ягоды или фрукты в шоколаде</li>
+              <li>Солёное к чаю</li>
+              <li>Новинки месяца</li>
               <li>Бесплатная доставка</li>
             </ul>
             <button type="button" class="btn btn-primary" data-subscribe="medium">Оформить</button>
@@ -109,12 +111,12 @@
             <p class="price"><span class="price-value" data-base="3490">3 490</span> ₽<span class="per">/мес</span></p>
             <p class="price-total" aria-live="polite"></p>
             <ul class="features">
-              <li>10+ продуктов в наборе</li>
+              <li>8–10 продуктов в наборе</li>
               <li>Всё из «Средней»</li>
-              <li>Новинки раньше всех</li>
+              <li>Сублиматы: ягоды и сублимированное мороженое</li>
+              <li>Чай «Москва Чаёвница»</li>
               <li>Подарочная упаковка</li>
-              <li>Скидка 10% на покупки в магазине</li>
-              <li>Личный менеджер</li>
+              <li>Скидка 10% в магазинах «ЕЛЬ»</li>
               <li>Бесплатная доставка</li>
             </ul>
             <button type="button" class="btn btn-outline" data-subscribe="high">Оформить</button>
@@ -148,7 +150,15 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container">© Дикоросы</div>
+    <div class="container">
+      <h2>Магазины</h2>
+      <div class="shops">
+        <p><strong>Москва · «ЕЛЬ» в Москве</strong><br>Лубянский проезд, 7 стр. 1<br><a href="tel:+79326537700">+7 932 653 77 00</a><br>ежедневно 10:00–20:00</p>
+        <p><strong>Екатеринбург · «ЕЛЬ» в Ельцин Центре</strong><br>ул. Бориса Ельцина, 3<br><a href="tel:+79220206210">+7 922 020 62 10</a><br>ежедневно 10:00–21:00</p>
+        <p><strong>Челябинск · «ЕЛЬ» на Витебской</strong><br>ул. Витебская, 10<br><a href="tel:+79220100702">+7 922 0 100 702</a><br>ежедневно 10:00–20:00</p>
+      </div>
+      <p class="copyright">© Дикоросы большой страны</p>
+    </div>
   </footer>
 
   <!-- Форма оформления подписки -->
