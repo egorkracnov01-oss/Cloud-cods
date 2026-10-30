@@ -34,9 +34,13 @@ h2 { font-size: clamp(2rem, 4.5vw, 3.4rem); margin-bottom: 36px; }
 /* Шапка — как на сайте: белая, логотип слева, меню капсом справа */
 .site-header { background: #fff; }
 .header-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding-top: 20px; padding-bottom: 20px; }
-.logo { display: flex; flex-direction: column; color: var(--green-dark); text-decoration: none; font-family: "Oswald", "Arial Narrow", sans-serif; text-transform: uppercase; line-height: .95; }
-.logo-main { font-size: 2.1rem; font-weight: 700; letter-spacing: -.01em; }
-.logo-sub { font-size: 1.05rem; font-weight: 600; }
+.logo { display: block; line-height: 0; }
+.logo img { width: auto; height: 68px; }
+@media (max-width: 600px) {
+  .logo img { height: 52px; }
+  .main-nav { gap: 4px 18px; }
+  .main-nav a { font-size: .95rem; }
+}
 .main-nav { display: flex; flex-wrap: wrap; gap: 4px 36px; }
 .main-nav a { color: var(--green); text-decoration: none; text-transform: uppercase; font-weight: 500; font-size: 1.05rem; letter-spacing: .02em; }
 .main-nav a:hover { color: var(--green-light); }
