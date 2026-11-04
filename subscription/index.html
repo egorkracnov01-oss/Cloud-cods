@@ -4,13 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Подписка — Дикоросы большой страны</title>
-  <meta name="description" content="Подписка на ежемесячный подарочный набор дикоросов: лёгкая, средняя и высокая. Каждый месяц — коробка с продукцией бесплатно.">
+  <meta name="description" content="Подписка на ежемесячный набор дикоросов: лёгкая, средняя и высокая. Доставка по всей России в пункты выдачи Ozon и СДЭК.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@600;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/subscription.css">
 </head>
 <body>
+
+  <!-- Общие рисунки: ёлка и гриб. Используются через <use>. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="fir" viewBox="0 0 100 160">
+      <path fill="currentColor" stroke="currentColor" stroke-width="6" stroke-linejoin="round"
+            d="M50 4 L76 45 L64 45 L86 85 L72 85 L96 128 L4 128 L28 85 L14 85 L36 45 L24 45 Z"/>
+      <rect x="44" y="128" width="12" height="30" rx="3" fill="#7a4a2a"/>
+    </symbol>
+    <symbol id="mushroom" viewBox="0 0 60 60">
+      <path fill="#f6ead3" d="M22 30 Q19 52 24 57 L36 57 Q41 52 38 30 Z"/>
+      <path fill="currentColor" d="M3 32 Q6 5 30 5 Q54 5 57 32 Q30 39 3 32 Z"/>
+      <ellipse cx="20" cy="15" rx="8" ry="4" fill="#fff" opacity=".28" transform="rotate(-20 20 15)"/>
+    </symbol>
+    <symbol id="leaf" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M3 21 C3 9 11 3 21 3 C21 13 15 21 3 21 Z"/>
+      <path d="M4 20 L16 8" stroke="#fff" stroke-opacity=".45" stroke-width="1.4" fill="none"/>
+    </symbol>
+  </svg>
 
   <!-- Шапка сайта. На реальном сайте замените на общую шапку и добавьте пункт меню «Подписка». -->
   <header class="site-header">
@@ -27,14 +45,108 @@
     </div>
   </header>
 
+  <div class="paid-notice" id="paid-notice" role="status" hidden>
+    Спасибо! Оплата обрабатывается. Подтверждение придёт на вашу почту, а белка уже собирает первый набор.
+  </div>
+
   <main>
     <section class="hero">
-      <div class="container hero-inner">
-        <p class="eyebrow">Подписка на дары леса</p>
-        <h1>Россия на вкус — каждый месяц</h1>
-        <p class="lead">Оформите подписку один раз, и каждый месяц мы бесплатно привезём вам набор нашей продукции: сублимированные ягоды, шоколад, чай, сладкое и солёное из дикоросов, собранных в лесах нашей страны. Состав набора меняется каждый месяц.</p>
-        <a href="#tiers" class="btn btn-primary">Выбрать подписку</a>
+      <div class="falling-leaves" aria-hidden="true">
+        <svg class="fall-leaf l1"><use href="#leaf"/></svg>
+        <svg class="fall-leaf l2"><use href="#leaf"/></svg>
+        <svg class="fall-leaf l3"><use href="#leaf"/></svg>
+        <svg class="fall-leaf l4"><use href="#leaf"/></svg>
+        <svg class="fall-leaf l5"><use href="#leaf"/></svg>
       </div>
+
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Подписка на дары леса</p>
+          <h1>Белка уже собирает ваш набор</h1>
+          <p class="lead">Оформите подписку один раз, и каждый месяц вас будет ждать коробка с дикоросами: сублимированные ягоды, шоколад, чай, сладкое и солёное из лесов нашей страны.</p>
+          <a href="#tiers" class="btn btn-primary">Выбрать набор</a>
+          <ul class="hero-facts">
+            <li>По всей России</li>
+            <li>Отправка за 2 дня</li>
+            <li>Ozon или СДЭК</li>
+          </ul>
+        </div>
+
+        <div class="hero-scene" aria-hidden="true">
+          <svg viewBox="0 0 520 420" role="presentation">
+            <clipPath id="scene-clip"><rect width="520" height="420" rx="48"/></clipPath>
+            <g clip-path="url(#scene-clip)">
+            <circle cx="260" cy="230" r="205" fill="#f5fbec"/>
+            <circle class="sun" cx="430" cy="78" r="28" fill="#ffd56b"/>
+
+            <use href="#fir" class="tree t1" x="0" y="80" width="140" height="260" style="color:#3d6e1f"/>
+            <use href="#fir" class="tree t2" x="395" y="50" width="130" height="285" style="color:#4f8a2a"/>
+
+            <path d="M0 332 Q130 300 260 322 T520 316 L520 420 L0 420 Z" fill="#9ccc6e"/>
+            <path d="M0 362 Q140 340 280 356 T520 350 L520 420 L0 420 Z" fill="#6fae42"/>
+
+            <use href="#mushroom" class="ground-mush m1" x="30" y="300" width="46" height="46" style="color:#8b4a24"/>
+            <use href="#mushroom" class="ground-mush m2" x="452" y="300" width="40" height="40" style="color:#d65a2c"/>
+            <use href="#mushroom" class="ground-mush m3" x="95" y="335" width="32" height="32" style="color:#d65a2c"/>
+            <use href="#mushroom" class="ground-mush m4" x="470" y="345" width="30" height="30" style="color:#8b4a24"/>
+
+            <!-- Грибы в корзине (позади передней стенки) -->
+            <use href="#mushroom" x="332" y="282" width="34" height="34" style="color:#8b4a24"/>
+            <use href="#mushroom" x="358" y="276" width="38" height="38" style="color:#d65a2c"/>
+
+            <!-- Белка -->
+            <g transform="translate(140 168)">
+              <g class="sq-hop">
+                <g class="sq-tail">
+                  <path fill="#c96a22" d="M95 170 C40 176 12 130 28 95 C38 70 22 50 38 32 C56 10 94 20 93 50 C92 72 70 82 78 105 C86 126 112 136 100 166 Z"/>
+                  <path fill="#e3923f" d="M88 160 C52 162 34 130 44 102 C51 82 40 64 50 48 C60 34 80 40 80 54 C80 72 60 86 68 108 C74 126 96 136 88 160 Z"/>
+                </g>
+                <ellipse cx="98" cy="166" rx="22" ry="16" fill="#c96a22"/>
+                <ellipse cx="112" cy="140" rx="34" ry="40" fill="#d9822b"/>
+                <ellipse cx="126" cy="146" rx="20" ry="30" fill="#f7dfb8"/>
+                <ellipse cx="124" cy="182" rx="18" ry="6" fill="#c96a22"/>
+
+                <g class="sq-head">
+                  <path fill="#c96a22" d="M114 70 L112 42 L131 62 Z"/>
+                  <circle cx="132" cy="86" r="26" fill="#d9822b"/>
+                  <ellipse cx="152" cy="94" rx="14" ry="11" fill="#d9822b"/>
+                  <ellipse cx="153" cy="99" rx="10" ry="7" fill="#f7dfb8"/>
+                  <circle cx="165" cy="92" r="4" fill="#3b2314"/>
+                  <g class="sq-eye">
+                    <ellipse cx="142" cy="82" rx="4.5" ry="5.5" fill="#3b2314"/>
+                    <circle cx="143.6" cy="80" r="1.6" fill="#fff"/>
+                  </g>
+                  <circle cx="136" cy="99" r="5" fill="#f29a9a" opacity=".6"/>
+                  <g class="sq-ear">
+                    <path fill="#d9822b" d="M124 66 L128 36 L144 60 Z"/>
+                    <path fill="#f2b27a" d="M128 60 L130 45 L138 58 Z"/>
+                    <path d="M126 40 Q121 27 128 20 Q134 29 131 40 Z" fill="#8a4515"/>
+                  </g>
+                </g>
+
+                <!-- Гриб в лапках: улетает в корзину и появляется снова -->
+                <g class="sq-mushroom">
+                  <use href="#mushroom" x="132" y="100" width="38" height="38" style="color:#8b4a24"/>
+                </g>
+                <ellipse cx="140" cy="133" rx="10" ry="6" fill="#c96a22" transform="rotate(-25 140 133)"/>
+                <ellipse cx="152" cy="136" rx="9" ry="5.5" fill="#c96a22" transform="rotate(-15 152 136)"/>
+              </g>
+            </g>
+
+            <!-- Корзина (передняя стенка поверх грибов) -->
+            <path d="M326 312 Q365 248 404 312" stroke="#a86d36" stroke-width="7" fill="none" stroke-linecap="round"/>
+            <path d="M320 310 L410 310 L399 352 Q365 362 331 352 Z" fill="#c98a4b"/>
+            <path d="M324 324 L406 324 M327 338 L403 338" stroke="#a86d36" stroke-width="3"/>
+            <path d="M345 312 L349 355 M365 312 L365 358 M385 312 L381 355" stroke="#a86d36" stroke-width="3"/>
+
+            <path d="M180 368 q4 -12 8 0 M196 370 q3 -10 6 0 M300 372 q4 -12 8 0 M430 368 q3 -10 6 0" stroke="#4f8a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 30 Q180 0 360 26 T720 28 T1080 24 T1440 30 L1440 60 L0 60 Z" fill="currentColor"/>
+      </svg>
     </section>
 
     <section class="how" aria-labelledby="how-title">
@@ -43,18 +155,18 @@
         <ol class="steps">
           <li>
             <span class="step-num">1</span>
-            <h3>Выберите уровень</h3>
-            <p>Лёгкая, средняя или высокая — они отличаются объёмом и составом набора.</p>
+            <h3>Выберите набор</h3>
+            <p>Лёгкий, средний или высокий: они отличаются количеством и составом продуктов.</p>
           </li>
           <li>
             <span class="step-num">2</span>
-            <h3>Оформите заявку</h3>
-            <p>Укажите контакты и адрес доставки. Менеджер свяжется с вами для подтверждения.</p>
+            <h3>Оплатите онлайн</h3>
+            <p>Укажите пункт выдачи Ozon или СДЭК. Первый месяц оплачивается сразу, дальше — раз в месяц с той же карты.</p>
           </li>
           <li>
             <span class="step-num">3</span>
-            <h3>Получайте подарки</h3>
-            <p>Каждый месяц набор приезжает к вам. Доставка и сама продукция входят в подписку.</p>
+            <h3>Забирайте подарки</h3>
+            <p>Отправляем набор в течение 2 дней, а потом каждый месяц. Доставка уже входит в стоимость.</p>
           </li>
         </ol>
       </div>
@@ -62,66 +174,95 @@
 
     <section id="tiers" class="tiers" aria-labelledby="tiers-title">
       <div class="container">
-        <h2 id="tiers-title">Уровни подписки</h2>
-
-        <div class="period-switch" role="radiogroup" aria-label="Срок подписки">
-          <button type="button" role="radio" aria-checked="true" data-months="1">1 месяц</button>
-          <button type="button" role="radio" aria-checked="false" data-months="3">3 месяца <span class="badge">−5%</span></button>
-          <button type="button" role="radio" aria-checked="false" data-months="6">6 месяцев <span class="badge">−10%</span></button>
-          <button type="button" role="radio" aria-checked="false" data-months="12">12 месяцев <span class="badge">−15%</span></button>
-        </div>
+        <h2 id="tiers-title">Выберите свой набор</h2>
+        <p class="section-sub">Чем выше уровень — тем полнее корзинка</p>
 
         <div class="tier-grid">
-          <article class="tier" data-tier="light">
+          <article class="tier" data-tier="light" data-price="2000">
+            <div class="tier-pic" aria-hidden="true">
+              <svg viewBox="0 0 120 80"><use href="#mushroom" x="38" y="14" width="44" height="44" style="color:#8b4a24"/></svg>
+            </div>
             <h3>Лёгкая</h3>
             <p class="tier-sub">Чтобы попробовать</p>
-            <p class="price"><span class="price-value" data-base="990">990</span> ₽<span class="per">/мес</span></p>
-            <p class="price-total" aria-live="polite"></p>
+            <p class="price">2 000 ₽<span class="per">/мес</span></p>
             <ul class="features">
               <li>3 продукта в наборе</li>
               <li>Плитка шоколада</li>
               <li>Чай</li>
               <li>Баночка сублимированных ягод</li>
-              <li>Бесплатная доставка</li>
+              <li>Доставка включена</li>
             </ul>
-            <button type="button" class="btn btn-outline" data-subscribe="light">Оформить</button>
+            <button type="button" class="btn btn-soft" data-subscribe="light">Оформить</button>
           </article>
 
-          <article class="tier tier-featured" data-tier="medium">
-            <span class="ribbon">Популярная</span>
+          <article class="tier tier-featured" data-tier="medium" data-price="5000">
+            <span class="ribbon">Любимая белкой</span>
+            <div class="tier-pic" aria-hidden="true">
+              <svg viewBox="0 0 120 80">
+                <use href="#mushroom" x="18" y="20" width="40" height="40" style="color:#d65a2c"/>
+                <use href="#mushroom" x="56" y="10" width="48" height="48" style="color:#8b4a24"/>
+              </svg>
+            </div>
             <h3>Средняя</h3>
             <p class="tier-sub">Для всей семьи</p>
-            <p class="price"><span class="price-value" data-base="1990">1 990</span> ₽<span class="per">/мес</span></p>
-            <p class="price-total" aria-live="polite"></p>
+            <p class="price">5 000 ₽<span class="per">/мес</span></p>
             <ul class="features">
               <li>5–6 продуктов в наборе</li>
               <li>Всё из «Лёгкой»</li>
               <li>Сладкое: ягоды или фрукты в шоколаде</li>
               <li>Солёное к чаю</li>
               <li>Новинки месяца</li>
-              <li>Бесплатная доставка</li>
+              <li>Доставка включена</li>
             </ul>
             <button type="button" class="btn btn-primary" data-subscribe="medium">Оформить</button>
           </article>
 
-          <article class="tier" data-tier="high">
+          <article class="tier" data-tier="high" data-price="7000">
+            <div class="tier-pic" aria-hidden="true">
+              <svg viewBox="0 0 120 80">
+                <use href="#mushroom" x="4" y="26" width="36" height="36" style="color:#8b4a24"/>
+                <use href="#mushroom" x="36" y="6" width="50" height="50" style="color:#d65a2c"/>
+                <use href="#mushroom" x="80" y="24" width="38" height="38" style="color:#8b4a24"/>
+              </svg>
+            </div>
             <h3>Высокая</h3>
-            <p class="tier-sub">Максимум даров леса</p>
-            <p class="price"><span class="price-value" data-base="3490">3 490</span> ₽<span class="per">/мес</span></p>
-            <p class="price-total" aria-live="polite"></p>
+            <p class="tier-sub">Полная корзинка даров леса</p>
+            <p class="price">7 000 ₽<span class="per">/мес</span></p>
             <ul class="features">
               <li>8–10 продуктов в наборе</li>
               <li>Всё из «Средней»</li>
               <li>Сублиматы: ягоды и сублимированное мороженое</li>
               <li>Чай «Москва Чаёвница»</li>
               <li>Подарочная упаковка</li>
-              <li>Скидка 10% в магазинах «ЕЛЬ»</li>
-              <li>Бесплатная доставка</li>
+              <li>Доставка включена</li>
             </ul>
-            <button type="button" class="btn btn-outline" data-subscribe="high">Оформить</button>
+            <button type="button" class="btn btn-soft" data-subscribe="high">Оформить</button>
           </article>
         </div>
-        <p class="note">Подписку можно приостановить или отменить в любой момент, связавшись с нами.</p>
+        <p class="note">Подписку можно отменить в любой момент по ссылке из письма — уже оплаченный месяц мы всё равно доставим.</p>
+      </div>
+    </section>
+
+    <section class="delivery" aria-labelledby="delivery-title">
+      <div class="container">
+        <h2 id="delivery-title">Доставка</h2>
+        <ul class="delivery-list">
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 C15 4 9 11 9 19 C9 31 24 44 24 44 C24 44 39 31 39 19 C39 11 33 4 24 4 Z" fill="#5f9e32"/><circle cx="24" cy="19" r="6" fill="#fff"/></svg>
+            <h3>По всей России</h3>
+            <p>Привезём набор в любой город, где есть пункт выдачи.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="14" width="36" height="28" rx="4" fill="#c98a4b"/><path d="M6 22 H42 M24 14 V42" stroke="#a86d36" stroke-width="3"/><path d="M14 14 L18 6 H30 L34 14" fill="#e0a865"/></svg>
+            <h3>Отправка за 2 дня</h3>
+            <p>Первый набор отправляем в течение 2 дней после оплаты, следующие — каждый месяц.</p>
+          </li>
+          <li>
+            <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="19" fill="#5f9e32"/><path d="M15 25 L21 31 L33 18" stroke="#fff" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Ozon или СДЭК</h3>
+            <p>Выберите удобный пункт выдачи при оформлении подписки.</p>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -129,20 +270,24 @@
       <div class="container">
         <h2 id="faq-title">Частые вопросы</h2>
         <details>
-          <summary>Когда приходит подарок?</summary>
-          <p>Первый набор отправляем в течение 5 рабочих дней после оплаты, следующие — в тот же день каждого месяца.</p>
+          <summary>Когда отправят первый набор?</summary>
+          <p>В течение 2 дней после оплаты. Следующие наборы отправляем каждый месяц после очередного списания.</p>
         </details>
         <details>
-          <summary>Что именно будет в коробке?</summary>
-          <p>Состав меняется каждый месяц в зависимости от сезона сбора. Мы стараемся не повторять продукты два месяца подряд.</p>
+          <summary>Как проходит оплата?</summary>
+          <p>Первый месяц вы оплачиваете картой при оформлении. Дальше деньги списываются автоматически раз в месяц с той же карты, чек приходит на почту.</p>
         </details>
         <details>
-          <summary>Можно ли сменить уровень подписки?</summary>
-          <p>Да, напишите или позвоните нам — новый уровень начнёт действовать со следующего месяца.</p>
+          <summary>Как отменить подписку?</summary>
+          <p>По ссылке из письма‑подтверждения или написав нам. Новых списаний не будет, а уже оплаченный месяц мы доставим.</p>
+        </details>
+        <details>
+          <summary>Что будет в наборе?</summary>
+          <p>Состав меняется каждый месяц: сублиматы, шоколад, чай, сладкое и солёное. Стараемся не повторять продукты два месяца подряд.</p>
         </details>
         <details>
           <summary>Можно ли подарить подписку?</summary>
-          <p>Конечно. При оформлении укажите адрес получателя — набор будет приходить ему.</p>
+          <p>Конечно. При оформлении укажите имя и телефон получателя и удобный ему пункт выдачи.</p>
         </details>
       </div>
     </section>
@@ -160,50 +305,72 @@
     </div>
   </footer>
 
-  <!-- Форма оформления подписки -->
+  <!-- Оформление подписки -->
   <dialog id="subscribe-dialog" class="dialog" aria-labelledby="dialog-title">
     <form id="subscribe-form" class="dialog-form" novalidate>
       <button type="button" class="dialog-close" aria-label="Закрыть" data-close>&times;</button>
       <h2 id="dialog-title">Оформление подписки</h2>
-      <p class="dialog-summary" id="dialog-summary"></p>
 
-      <label>Уровень подписки
-        <select name="tier" required>
-          <option value="light">Лёгкая</option>
-          <option value="medium">Средняя</option>
-          <option value="high">Высокая</option>
+      <fieldset>
+        <legend>Набор</legend>
+        <select name="tier" required aria-label="Набор">
+          <option value="light">Лёгкая — 2 000 ₽/мес</option>
+          <option value="medium">Средняя — 5 000 ₽/мес</option>
+          <option value="high">Высокая — 7 000 ₽/мес</option>
         </select>
-      </label>
-      <label>Срок
-        <select name="months" required>
-          <option value="1">1 месяц</option>
-          <option value="3">3 месяца</option>
-          <option value="6">6 месяцев</option>
-          <option value="12">12 месяцев</option>
-        </select>
-      </label>
-      <label>Имя
-        <input name="name" type="text" autocomplete="name" required>
-      </label>
-      <label>Телефон
-        <input name="phone" type="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
-      </label>
-      <label>Email
-        <input name="email" type="email" autocomplete="email">
-      </label>
-      <label>Адрес доставки
-        <textarea name="address" rows="2" autocomplete="street-address" required></textarea>
-      </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Получатель</legend>
+        <label>Имя и фамилия
+          <input name="name" type="text" autocomplete="name" maxlength="100" required>
+        </label>
+        <label>Телефон
+          <input name="phone" type="tel" autocomplete="tel" placeholder="+7 900 000-00-00" required>
+        </label>
+        <label>Email — сюда придут чек и подтверждение
+          <input name="email" type="email" autocomplete="email" required>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Пункт выдачи</legend>
+        <div class="delivery-options" id="delivery-options" role="radiogroup" aria-label="Служба доставки"></div>
+        <label>Город
+          <input name="city" type="text" autocomplete="address-level2" maxlength="100" required>
+        </label>
+        <label>Адрес пункта выдачи
+          <input name="pickup_point" type="text" maxlength="300" placeholder="Например: ул. Ленина, 10" required>
+        </label>
+        <p class="hint" id="pickup-hint"></p>
+        <label>Комментарий
+          <textarea name="comment" rows="2" maxlength="500"></textarea>
+        </label>
+      </fieldset>
+
+      <!-- Скрытое поле-ловушка для спам-ботов -->
+      <input name="website" type="text" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+
       <label class="checkbox">
         <input name="agree" type="checkbox" required>
         <span>Согласен на обработку персональных данных</span>
       </label>
+      <label class="checkbox">
+        <input name="agree_recurring" type="checkbox" required>
+        <span>Согласен на ежемесячное автоматическое списание стоимости подписки с моей карты. Отменить можно в любой момент.</span>
+      </label>
+
       <p class="form-error" role="alert" hidden></p>
-      <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+      <button type="submit" class="btn btn-primary btn-block" id="submit-btn">Перейти к оплате</button>
+      <p class="secure">Оплата картой через ЮKassa. Данные карты вводятся на защищённой странице платёжной системы.</p>
     </form>
     <div class="dialog-success" hidden>
+      <svg viewBox="0 0 120 80" class="success-pic" aria-hidden="true">
+        <use href="#mushroom" x="18" y="20" width="40" height="40" style="color:#d65a2c"/>
+        <use href="#mushroom" x="56" y="10" width="48" height="48" style="color:#8b4a24"/>
+      </svg>
       <h2>Спасибо!</h2>
-      <p>Заявка принята. Мы свяжемся с вами в ближайшее время, чтобы подтвердить подписку и оплату.</p>
+      <p>Заявка принята. Мы свяжемся с вами, чтобы подтвердить подписку.</p>
       <button type="button" class="btn btn-primary" data-close>Хорошо</button>
     </div>
   </dialog>

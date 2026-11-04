@@ -1,67 +1,58 @@
 (function () {
-  // Куда отправлять заявки. Пустая строка — заявка только выводится в консоль.
-  // Укажите адрес обработчика на сервере, например "/api/subscription".
-  var ENDPOINT = "";
+  // Адрес обработчика заявок на сервере (папка api/ рядом со страницей).
+  var ENDPOINT = "api/subscribe.php";
 
-  // Скидка в зависимости от срока подписки (в месяцах).
-  var DISCOUNTS = { 1: 0, 3: 0.05, 6: 0.10, 12: 0.15 };
-  var TIER_NAMES = { light: "Лёгкая", medium: "Средняя", high: "Высокая" };
+  // Службы доставки. Чтобы добавить новую, допишите строку здесь
+  // и в списке delivery_services в api/config.php.
+  var DELIVERY_SERVICES = [
+    { id: "ozon", name: "Ozon", hint: "Адрес пункта выдачи Ozon можно посмотреть в приложении Ozon, раздел «Пункты выдачи»." },
+    { id: "cdek", name: "СДЭК", hint: "Найти ближайший пункт на карте:", mapUrl: "https://www.cdek.ru/ru/offices" }
+  ];
 
-  var currentMonths = 1;
-
-  function formatRub(n) {
-    return Math.round(n).toLocaleString("ru-RU");
-  }
-
-  function monthsLabel(m) {
-    if (m === 1) return "1 месяц";
-    if (m >= 2 && m <= 4) return m + " месяца";
-    return m + " месяцев";
-  }
-
-  function basePrice(tier) {
-    var el = document.querySelector('[data-tier="' + tier + '"] .price-value');
-    return Number(el.dataset.base);
-  }
-
-  function calc(tier, months) {
-    var monthly = Math.round(basePrice(tier) * (1 - DISCOUNTS[months]));
-    return { monthly: monthly, total: monthly * months };
-  }
-
-  // Переключатель срока подписки
-  function updatePrices() {
-    document.querySelectorAll(".tier").forEach(function (card) {
-      var p = calc(card.dataset.tier, currentMonths);
-      card.querySelector(".price-value").textContent = formatRub(p.monthly);
-      card.querySelector(".price-total").textContent = currentMonths > 1
-        ? formatRub(p.total) + " ₽ за " + monthsLabel(currentMonths)
-        : "";
-    });
-  }
-
-  document.querySelectorAll(".period-switch button").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      document.querySelectorAll(".period-switch button").forEach(function (b) {
-        b.setAttribute("aria-checked", String(b === btn));
-      });
-      currentMonths = Number(btn.dataset.months);
-      updatePrices();
-    });
-  });
-
-  // Модальное окно оформления
   var dialog = document.getElementById("subscribe-dialog");
   var form = document.getElementById("subscribe-form");
   var success = dialog.querySelector(".dialog-success");
-  var summary = document.getElementById("dialog-summary");
   var errorBox = form.querySelector(".form-error");
+  var submitBtn = document.getElementById("submit-btn");
+  var optionsBox = document.getElementById("delivery-options");
+  var hint = document.getElementById("pickup-hint");
 
-  function updateSummary() {
-    var tier = form.tier.value;
-    var months = Number(form.months.value);
-    var p = calc(tier, months);
-    summary.textContent = TIER_NAMES[tier] + " · " + monthsLabel(months) + " · " + formatRub(p.total) + " ₽";
+  function formatRub(n) {
+    return Number(n).toLocaleString("ru-RU");
+  }
+
+  function tierPrice(tier) {
+    return document.querySelector('.tier[data-tier="' + tier + '"]').dataset.price;
+  }
+
+  // Кнопки выбора службы доставки
+  DELIVERY_SERVICES.forEach(function (s, i) {
+    var label = document.createElement("label");
+    label.innerHTML = '<input type="radio" name="delivery_service"><span></span>';
+    var input = label.querySelector("input");
+    input.value = s.id;
+    input.required = true;
+    input.checked = i === 0;
+    label.querySelector("span").textContent = s.name;
+    optionsBox.appendChild(label);
+  });
+
+  function updateHint() {
+    var id = form.delivery_service.value;
+    var s = DELIVERY_SERVICES.find(function (x) { return x.id === id; });
+    hint.textContent = s ? s.hint + " " : "";
+    if (s && s.mapUrl) {
+      var a = document.createElement("a");
+      a.href = s.mapUrl;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = "открыть карту " + s.name;
+      hint.appendChild(a);
+    }
+  }
+
+  function updateSubmitLabel() {
+    submitBtn.textContent = "Перейти к оплате · " + formatRub(tierPrice(form.tier.value)) + " ₽";
   }
 
   function openDialog(tier) {
@@ -70,8 +61,8 @@
     success.hidden = true;
     errorBox.hidden = true;
     form.tier.value = tier;
-    form.months.value = String(currentMonths);
-    updateSummary();
+    updateHint();
+    updateSubmitLabel();
     if (typeof dialog.showModal === "function") dialog.showModal();
     else dialog.setAttribute("open", "");
   }
@@ -90,42 +81,61 @@
   dialog.addEventListener("click", function (e) {
     if (e.target === dialog) closeDialog();
   });
-  form.tier.addEventListener("change", updateSummary);
-  form.months.addEventListener("change", updateSummary);
+  form.tier.addEventListener("change", updateSubmitLabel);
+  optionsBox.addEventListener("change", updateHint);
+  form.addEventListener("input", function () { errorBox.hidden = true; });
+
+  function showError(text) {
+    errorBox.textContent = text;
+    errorBox.hidden = false;
+  }
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (!form.checkValidity()) {
-      errorBox.textContent = "Заполните обязательные поля: имя, телефон, адрес и согласие.";
-      errorBox.hidden = false;
+      var bad = form.querySelector(":invalid");
+      showError(bad && bad.type === "email"
+        ? "Проверьте адрес электронной почты."
+        : "Заполните все поля и отметьте оба согласия.");
+      if (bad) bad.focus();
       return;
     }
     errorBox.hidden = true;
 
     var data = Object.fromEntries(new FormData(form).entries());
-    data.months = Number(data.months);
-    data.total = Math.round(calc(data.tier, data.months).total);
+    data.agree = form.agree.checked;
+    data.agree_recurring = form.agree_recurring.checked;
 
-    var request = ENDPOINT
-      ? fetch(ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        }).then(function (r) { if (!r.ok) throw new Error(r.status); })
-      : Promise.resolve(console.log("Заявка на подписку:", data));
-
-    var submitBtn = form.querySelector('[type="submit"]');
     submitBtn.disabled = true;
-    request.then(function () {
-      form.hidden = true;
-      success.hidden = false;
-    }).catch(function () {
-      errorBox.textContent = "Не удалось отправить заявку. Попробуйте позже или позвоните нам.";
-      errorBox.hidden = false;
-    }).finally(function () {
-      submitBtn.disabled = false;
-    });
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (body) {
+          if (!r.ok) throw new Error(body.error || "");
+          return body;
+        });
+      })
+      .then(function (body) {
+        if (body.confirmation_url) {
+          // Переход на страницу оплаты ЮKassa
+          window.location.href = body.confirmation_url;
+          return;
+        }
+        form.hidden = true;
+        success.hidden = false;
+        submitBtn.disabled = false;
+      })
+      .catch(function (err) {
+        showError(err.message || "Не удалось отправить заявку. Попробуйте позже или позвоните нам.");
+        submitBtn.disabled = false;
+      });
   });
 
-  updatePrices();
+  // Возврат со страницы оплаты: ?paid=<номер подписки>
+  if (new URLSearchParams(location.search).has("paid")) {
+    document.getElementById("paid-notice").hidden = false;
+  }
 })();

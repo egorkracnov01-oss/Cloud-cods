@@ -1,0 +1,5 @@
+# Закрыть служебные файлы и базу от доступа из браузера (Apache)
+<FilesMatch "^(config|config\.example|lib|charge)\.php$">
+  Require all denied
+</FilesMatch>
+RedirectMatch 403 /data/
